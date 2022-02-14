@@ -13,7 +13,6 @@
     "gatsby-plugin-react-helmet": "^5.5.0",
     "gatsby-plugin-sharp": "^4.5.1",
     "gatsby-remark-images": "^6.7.0",
-    "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-source-filesystem": "^4.5.1",
     "gatsby-transformer-remark": "^5.7.0",
     "gatsby-transformer-sharp": "^4.5.0",
@@ -30,8 +29,8 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "replace-forestry-paths.js; gatsby build",
+    "develop": "replace-forestry-paths.js; gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
     "serve": "gatsby serve",

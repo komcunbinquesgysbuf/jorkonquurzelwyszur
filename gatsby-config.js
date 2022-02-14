@@ -42,13 +42,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`, options: {
         plugins: [
           {
-            resolve: `gatsby-remark-relative-images`,
-            options: {
-              staticFolderName: `src`,
-              include: [`featured`],
-            },
-          },
-          {
             resolve: `gatsby-remark-images`,
             options: {maxWidth: 800},
           },
