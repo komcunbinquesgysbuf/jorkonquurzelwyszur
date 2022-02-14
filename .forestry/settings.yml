@@ -2,7 +2,7 @@
 new_page_extension: md
 auto_deploy: false
 admin_path: static/admin
-webhook_url: https://hookb.in/PxdJw0QlNqCpKPrrKd3E
+webhook_url: ''
 sections:
 - type: directory
   path: src/pages
