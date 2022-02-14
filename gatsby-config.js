@@ -44,7 +44,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-relative-images`,
             options: {
-              staticFolderName: `/images`,
+              staticFolderName: `/src`,
               include: [`featured`],
             },
           },
