@@ -29,8 +29,8 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "replace-forestry-paths.js; gatsby build",
-    "develop": "replace-forestry-paths.js; gatsby develop",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
     "serve": "gatsby serve",
