@@ -9,3 +9,4 @@ fields:
   label: title
 pages:
 - src/pages/hello-world.md
+- src/pages/second-step.html
