@@ -1,6 +1,6 @@
 ---
 title: Hello world
-featured: "/src/images/gatsby-astronaut.png"
+featured: "/images/gatsby-astronaut.png"
 
 ---
 # Hello World,
