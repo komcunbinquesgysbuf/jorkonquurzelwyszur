@@ -7,5 +7,10 @@ fields:
   config:
     required: false
   label: title
+- name: featured
+  type: file
+  config:
+    maxSize: 64
+  label: featured
 pages:
 - src/pages/hello-world.md
