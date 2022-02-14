@@ -1,6 +1,6 @@
 ---
 title: first
-featured: "/ckzmnri0c000ipj862t51ivd1/gatsby-astronaut.png"
+featured: "../../images/gatsby-astronaut.png"
 
 ---
-![](/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png)
+![](../../images/gatsby-icon.png)
