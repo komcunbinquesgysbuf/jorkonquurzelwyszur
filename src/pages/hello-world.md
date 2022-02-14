@@ -1,10 +1,10 @@
 ---
 title: Hello world
-featured: "../images/gatsby-astronaut.png"
+featured: "/ckzmnri0c000ipj862t51ivd1/gatsby-astronaut.png"
 
 ---
 # Hello World,
 
 This is how it starts. Just added forestry to a repo based on the default Gatsby starter.
 
-![](../images/gatsby-icon.png)
+![](/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png)
