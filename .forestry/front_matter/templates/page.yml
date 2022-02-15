@@ -14,5 +14,6 @@ fields:
   label: featured
 pages:
 - src/pages/hello-world.md
+- src/pages/mcc-plv7h-cla-j3w.md
 - src/pages/news/first.md
 - src/pages/test.md
