@@ -44,6 +44,8 @@ module.exports = {
           {
             resolve:`remark-forestry-images`,
             options: {
+              changeFiles: !process.env.DEV,
+              replaceIn: `src/pages`,
               virtual: `ckzmnri0c000ipj862t51ivd1`,
               physical: `src/images`
             }
