@@ -42,6 +42,13 @@ module.exports = {
       resolve: `gatsby-transformer-remark`, options: {
         plugins: [
           {
+            resolve:`remark-forestry-images`,
+            options: {
+              virtual: `ckzmnri0c000ipj862t51ivd1`,
+              physical: `src/images`
+            }
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {maxWidth: 800},
           },
