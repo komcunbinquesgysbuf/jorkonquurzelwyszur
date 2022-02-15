@@ -7,7 +7,7 @@ sections:
 - type: directory
   path: src/pages
   label: Markdown Pages
-  create: documents
+  create: all
   match: "**/*.md"
   new_doc_ext: md
   templates:
