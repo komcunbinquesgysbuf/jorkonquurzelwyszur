@@ -4,14 +4,14 @@ auto_deploy: false
 admin_path: static/admin
 webhook_url: ''
 sections:
-  - type: directory
-    path: src/pages
-    label: Markdown Pages
-    create: documents
-    match: "**/*.md"
-    new_doc_ext: md
-    templates:
-      - page
+- type: directory
+  path: src/pages
+  label: Markdown Pages
+  create: documents
+  match: "**/*.md"
+  new_doc_ext: md
+  templates:
+  - page
 upload_dir: src/images
 public_path: "/ckzmnri0c000ipj862t51ivd1"
 front_matter_path: ''
@@ -19,8 +19,8 @@ use_front_matter_path: false
 file_template: ":year:-:month:/:filename:"
 build:
   preview_env:
-    - PATH_PREFIX=/
-    - GATSBY_WEBPACK_PUBLICPATH=/
+  - PATH_PREFIX=/
+  - GATSBY_WEBPACK_PUBLICPATH=/
   preview_output_directory: public
   install_dependencies_command: npm install
   preview_docker_image: node:14

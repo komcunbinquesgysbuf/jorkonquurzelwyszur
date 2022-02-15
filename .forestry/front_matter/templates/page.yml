@@ -15,3 +15,4 @@ fields:
 pages:
 - src/pages/hello-world.md
 - src/pages/news/first.md
+- src/pages/test.md
