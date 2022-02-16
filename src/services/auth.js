@@ -23,6 +23,6 @@ export const performLogin = (username, password) =>
         .then(({refreshToken, data}) => saveStorageObject({user: data, jwt: refreshToken}));
 export const isLoggedIn = () => !!getUser();
 export const logout = callback => {
-    window.localStorage.removeItem(storageKey);
+    isBrowser() && window.localStorage.removeItem(storageKey);
     callback();
 };
