@@ -1,50 +1,37 @@
-import React from "react"
-import { navigate } from "gatsby"
-import { handleLogin, isLoggedIn } from "../services/auth"
-class Login extends React.Component {
-    state = {
-        username: ``,
-        password: ``,
-    }
-    handleUpdate = event => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        })
-    }
-    handleSubmit = event => {
+import React, {useState} from "react"
+import {navigate} from "gatsby"
+import {performLogin} from "../services/auth"
+
+const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const handleSubmit = event => {
         event.preventDefault()
-        handleLogin(this.state)
-    }
-    render() {
-        if (isLoggedIn()) {
-            navigate(`/app/profile`)
-        }
-        return (
-            <>
-                <h1>Log in</h1>
-                <form
-                    method="post"
-                    onSubmit={event => {
-                        this.handleSubmit(event)
-                        navigate(`/app/profile`)
-                    }}
-                >
-                    <label>
-                        Username
-                        <input type="text" name="username" onChange={this.handleUpdate} />
-                    </label>
-                    <label>
-                        Password
-                        <input
-                            type="password"
-                            name="password"
-                            onChange={this.handleUpdate}
-                        />
-                    </label>
-                    <input type="submit" value="Log In" />
-                </form>
-            </>
+        performLogin(username, password).then(
+            () => navigate(`/app/profile`),
+            err => window.alert(err)
         )
     }
+    return <>
+        <h1>Log in</h1>
+        <form
+            method="post"
+            onSubmit={event => handleSubmit(event)}
+        >
+            <label>
+                Username
+                <input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}/>
+            </label>
+            <label>
+                Password
+                <input
+                    type="password" value={password}
+                    name="password"
+                    onChange={e => setPassword(e.target.value)}
+                />
+            </label>
+            <input type="submit" value="Log In"/>
+        </form>
+    </>
 }
 export default Login

@@ -1,13 +1,12 @@
 import React from "react"
-import { Link, navigate } from "gatsby"
-import { getUser, isLoggedIn, logout } from "../services/auth"
+import {Link, navigate} from "gatsby"
+import {getUser, logout} from "../services/auth"
+
 export default function NavBar() {
-    let greetingMessage = ""
-    if (isLoggedIn()) {
-        greetingMessage = `Hello ${getUser().name}`
-    } else {
-        greetingMessage = "You are not logged in"
-    }
+    const user = getUser();
+    const greetingMessage = user
+        ? `Hello ${user.salutation || user.first_name || ''} ${user.last_name}`
+        : "You are not logged in";
     return (
         <div
             style={{
@@ -23,11 +22,11 @@ export default function NavBar() {
                 {` `}
                 <Link to="/app/profile">Profile</Link>
                 {` `}
-                {isLoggedIn() ? (
+                {user ? (
                     <a
                         href="/"
                         onClick={event => {
-                            event.preventDefault()
+                            event.preventDefault();
                             logout(() => navigate(`/app/login`))
                         }}
                     >
