@@ -1,11 +1,12 @@
 import React from "react"
 import {graphql} from "gatsby"
 import {GatsbyImage, getImage} from "gatsby-plugin-image";
+import Layout from "../../components/layout";
 
 const Template = ({data}) => {
     const {markdownRemark} = data
     const {frontmatter, html} = markdownRemark
-    return <>
+    return <Layout>
         <GatsbyImage alt={''} image={getImage(frontmatter.featured)}/>
         <pre>{JSON.stringify(frontmatter.featured, null, 2)}</pre>
         <div className="blog-post">
@@ -16,7 +17,7 @@ const Template = ({data}) => {
                 dangerouslySetInnerHTML={{__html: html}}
             />
         </div>
-    </>
+    </Layout>
 };
 export const pageQuery = graphql`
     query($id: String!) {

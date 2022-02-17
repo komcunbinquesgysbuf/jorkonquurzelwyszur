@@ -1,0 +1,498 @@
+html {
+    --ink: #222222;
+    --paper: #eeeeee;
+    --green: #23af6f;
+    --orange: #eb691c;
+    --petrol: #0a7f8e;
+    --yellow: #fabc34;
+    --blue: #2964a9;
+    background-color: var(--paper);
+}
+
+@font-face {
+    font-family: "Catamaran";
+    src: url(../fonts/catamaran-regular.woff2) format("woff2"), url(../fonts/catamaran-regular.ttf) format("truetype");
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0 none transparent;
+}
+
+body .page *,
+body .page *::before,
+body .page *::after {
+    font-style: normal;
+    font-weight: normal;
+    font-family: Catamaran, sans-serif;
+}
+
+body {
+    color: var(--ink);
+    font-size: 1rem;
+    font-family: Catamaran, sans-serif;
+    line-height: 1.5rem;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+}
+
+h2 {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+p, li, h1, h2, h3, h4 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+a {
+    color: var(--petrol);
+}
+
+/*html body div.page.layout-default*/
+div.header {
+    background-color: var(--green);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    z-index: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+}
+
+/*html body div.page.layout-default div.header*/
+div.sitename, div.navigation-banner {
+    display: none;
+}
+
+/*html body div.page.layout-default div.header*/
+div.sitename-banner {
+    flex: 0 0 auto;
+    width: 82px;
+    height: 64px;
+    margin-left: 44px;
+    background-image: url(../images/gatsby-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 18px;
+}
+
+.navigation {
+    margin: -56px 0 0 9px;
+    position: absolute;
+    height: 0;
+}
+
+.navigation > [type="checkbox"] {
+    display: none;
+}
+
+.navigation li {
+    list-style-type: none;
+}
+
+.navigation > ul {
+    transform: translateX(-10px) scaleX(0);
+    transform-origin: left;
+    padding: 10px;
+    background: var(--green);
+    width: fit-content;
+    transition: transform .3s ease-in-out, z-index .3s step-end;
+    position: relative;
+    z-index: 0;
+}
+
+.navigation > [type="checkbox"]:checked ~ ul {
+    transform: translateX(0) scaleX(1);
+    z-index: 1;
+    transition: transform .3s ease-in-out, z-index .3s step-start;
+}
+
+.navigation > .toggle-menu {
+    display: block;
+    width: 44px;
+    padding: 10px;
+    z-index: 1;
+    transition: transform .3s ease-in-out;
+}
+
+.navigation > .toggle-menu i {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--paper);
+    margin: 5px 0;
+    transition: transform .3s ease-in-out;
+}
+
+.navigation > [type="checkbox"]:checked ~ .toggle-menu {
+    transform: translate(8px);
+}
+
+.navigation > [type="checkbox"]:checked ~ .toggle-menu .one {
+    transform: translate(0, 8px) rotate(-225deg);
+}
+
+.navigation > [type="checkbox"]:checked ~ .toggle-menu .two {
+    transform: scaleX(0);
+}
+
+.navigation > [type="checkbox"]:checked ~ .toggle-menu .three {
+    transform: translate(0, -8px) rotate(225deg);
+}
+
+.navigation > ul.other-languages {
+    border-top: 4px dotted var(--paper);
+}
+
+.navigation > ul.other-languages > li > * {
+    font-size: 0;
+}
+
+.navigation > ul > li > em.icon {
+    text-shadow: 1px -1px 1px #000, 1px 1px 1px #000, -1px 1px 1px #000, -1px -1px 1px #000;
+}
+
+.navigation > ul > li > [title]::after {
+    font-size: 1rem;
+    content: attr(title);
+    text-shadow: none;
+}
+
+.navigation > ul.other-languages > li > em::after, .navigation > ul.other-languages > li > a.active::after {
+    font-weight: bold;
+}
+
+.navigation a, .navigation em {
+    text-decoration: none;
+    display: block;
+    padding: .1rem 10px;
+    border-radius: .2rem;
+    color: var(--paper);
+}
+
+.navigation .active a::before {
+    content: ' ▲';
+}
+
+.navigation a:hover {
+    color: var(--green);
+    background-color: var(--paper);
+}
+
+.navigation em, .navigation .active a {
+    color: var(--ink);
+    font-weight: bold;
+}
+
+.content > .main {
+    margin: 72px 18px 8px 18px;
+}
+
+.content > .main > h1:not(* + h1) {
+    display: none;
+}
+
+.content > .main p, .content > .main h1, .content > .main h2, .content > .main h3, .content > .main h4 {
+    margin: .9rem 0;
+}
+
+.content > .main p ~ h1, .content > .main p ~ h2, .content > .main p ~ h3, .content > .main p ~ h4 {
+    margin-top: 1.8rem;
+}
+
+.content > .main ol {
+    list-style-type: lower-alpha;
+}
+
+.content > .main li {
+    margin-left: 1.2rem;
+}
+
+.content > .main .flex3 + ul > li {
+    list-style-type: none;
+    margin: .9rem 0 1.8rem;
+}
+
+.content > .main > .tabs {
+    margin-top: 1.8rem;
+    display: none; /* hide until JS takes over to create tabbed pane */
+}
+
+.content > .main > .tabs > ul {
+    display: flex;
+}
+
+.content > .main > .tabs > ul > li {
+    list-style-type: none;
+    margin-left: 0;
+    border-radius: .2rem .2rem 0 0;
+    background-color: #cccccc;
+    padding: .4rem;
+    margin-right: .2rem;
+    cursor: pointer;
+}
+
+.content > .main > .tabs > ul > li.active {
+    cursor: default;
+    border: solid #cccccc;
+    border-width: 1px 1px 0 1px;
+    background-color: var(--paper);
+    font-weight: bold;
+}
+
+.content > .main > .tab-panel {
+    display: none;
+    border: solid #cccccc;
+    border-width: 0 0 1px 1px;
+    border-radius: 0 .2rem .2rem .2rem;
+    box-shadow: 3px 2px 5px #aaa;
+    padding: 1.2rem;
+}
+
+.content > .main > .tab-panel.active {
+    display: block;
+}
+
+.content > .main > .tab-panel.active > :first-child {
+    display: none;
+}
+
+.content > .main strong {
+    font-weight: bold;
+    text-shadow: 0 0;
+}
+
+.content > .main > iframe {
+    width: 100%;
+    height: calc(100vh - 150px);
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+}
+
+#yellow-bar {
+    position: absolute;
+    top: 64px;
+    width: 100%;
+    background-color: var(--petrol);
+    color: var(--paper);
+    padding: 0 18px;
+}
+
+#yellow-bar a {
+    color: var(--paper);
+}
+
+#yellow-bar ~ .page .content .main{
+    margin-top: 96px
+}
+
+.footer {
+    margin-top: 2rem;
+    background-color: var(--green);
+}
+
+.footer .siteinfo {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.footer .siteinfo > * {
+    flex: 1 0 auto;
+    margin: 1rem 1rem 0 1rem;
+}
+
+.footer .siteinfo > p {
+    flex: 1 0 99%;
+    margin: 1rem;
+    font-size: .9rem;
+}
+
+.footer .siteinfo > ul {
+    list-style-type: none;
+}
+
+.footer .siteinfo > dl > * {
+    display: block;
+}
+
+.footer .siteinfo > dl > dt {
+   float: left;
+}
+
+.footer .siteinfo > dl > dt::after {
+   content: ':';
+}
+
+.footer .siteinfo > dl > dd {
+    margin-left: 4rem;
+}
+
+.footer a {
+    color: var(--paper);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 50rem) {
+    div.header {
+        display: flex;
+        justify-content: space-between;
+    }
+    div.sitename-banner {
+        margin-left: 0;
+    }
+    div.navigation-banner {
+        display: block;
+        margin: 20px 0 0 20px;
+        font-size: 90%;
+    }
+    .navigation {
+        position: static;
+        display: flex;
+        margin: 0;
+        height: auto;
+    }
+    .navigation > .toggle-menu {
+        display: none;
+    }
+    .navigation > ul {
+        transform: none;
+        align-items: center;
+        z-index: 1;
+    }
+    .navigation > ul.pages {
+        display: flex;
+    }
+    .navigation > ul.other-languages {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top: 0 none;
+        border-left: 4px dotted var(--paper);
+    }
+    .navigation > ul.other-languages > li > * {
+        font-size: 1rem;
+    }
+
+    .navigation > ul > li > [title]::after {
+        content: none;
+    }
+
+    .content > .main .flex3 + ul {
+        display: flex;
+        flex-flow: row wrap;
+        margin-right: -4%;
+    }
+
+    .content > .main .flex3 + ul > li {
+        width: 29%;
+        margin-right: 4%;
+    }
+}
+
+/* start page sections with special color and imagery */
+.content > .main ul > li > .sectionProducts {
+    background: url("../images/gatsby-astronaut.png") no-repeat center;
+    height: 105px;
+    margin-bottom: -.9rem;
+}
+.content > .main ul > li > .sectionProducts ~ * {
+    color: var(--green);
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff;
+    font-weight: bold;
+}
+
+.content > .main ul > li > .sectionFactoring {
+    background: url("../images/gatsby-icon.png") no-repeat center;
+    height: 105px;
+    margin-bottom: -.9rem;
+}
+.content > .main ul > li > .sectionFactoring ~ * {
+    color: var(--blue);
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff;
+    font-weight: bold;
+}
+
+.content > .main ul > li > .sectionRetail {
+    background: url("../images/gatsby-astronaut.png") no-repeat center;
+    height: 105px;
+    margin-bottom: -.9rem;
+}
+.content > .main ul > li > .sectionRetail ~ * {
+    color: var(--orange);
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff;
+    font-weight: bold;
+}
+
+/* contact form */
+.contact-form p {
+    display: flex;
+    flex-flow: row wrap;
+}
+.contact-form p.contact-message, .contact-form p.contact-consent {
+    display: block;
+}
+.contact-form p.contact-message textarea {
+    width: 100%;
+}
+.contact-form p > label {
+    flex: 0 0 120px;
+}
+.contact-form input {
+    flex: 1 0 200px;
+}
+.contact-form input, .contact-form textarea {
+    padding: 0 .2rem;
+    background-color: #fff;
+    border-radius: .2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border: 1px solid #cccccc;
+    box-shadow: 1px 0 2px #aaa inset;
+}
+.contact-form p > br {
+    display: none;
+}
+.contact-form .btn {
+    border-radius: .2rem;
+    padding: .4rem;
+    background-color: var(--green);
+    border: 1px solid #cccccc;
+    box-shadow: 2px 1px 3px #aaa;
+    color: var(--paper);
+}
+.contact-form .btn:hover {
+    background-color: #fff;
+    border-color: var(--green);
+    color: var(--green);
+}
+.contact-form .btn:active {
+    box-shadow: 1px 0 2px #aaa inset;
+}

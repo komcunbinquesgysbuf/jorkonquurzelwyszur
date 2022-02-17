@@ -4,36 +4,31 @@ import {getUser, logout} from "../services/auth"
 
 export default function NavBar() {
     const user = getUser();
-    const greetingMessage = user
-        ? `Hello ${user.salutation || user.first_name || ''} ${user.last_name}`
-        : "You are not logged in";
-    return (
-        <div
-            style={{
-                display: "flex",
-                flex: "1",
-                justifyContent: "space-between",
-                borderBottom: "1px solid #d1c1e0",
-            }}
-        >
-            <span>{greetingMessage}</span>
-            <nav>
-                <Link to="/">Home</Link>
-                {` `}
-                <Link to="/app/profile">Profile</Link>
-                {` `}
-                {user ? (
-                    <a
-                        href="/"
-                        onClick={event => {
-                            event.preventDefault();
-                            logout(() => navigate(`/app/login`))
-                        }}
-                    >
-                        Logout
-                    </a>
-                ) : null}
-            </nav>
-        </div>
-    )
+    const onLogout = event => {
+        event.preventDefault();
+        logout(() => navigate(`/app/login`))
+    };
+    return <div className="navigation" role="navigation">
+        <input type="checkbox" id="ckrh130vr00026686mnjl9jmw"/>
+        <label className="toggle-menu" htmlFor="ckrh130vr00026686mnjl9jmw">
+            <i className="one"></i>
+            <i className="two"></i>
+            <i className="three"></i>
+        </label>
+        <ul className="pages">
+            <li className="active" aria-current="page"><em>Home</em></li>
+            <li><Link to="/page-2">Products</Link></li>
+            <li><Link to="/test">References</Link></li>
+            <li><Link to="/using-ssr">Jobs</Link></li>
+            <li><Link to="/news/first">News</Link></li>
+            <li><Link to="/hello-world">Contact</Link></li>
+            <li><Link to="/app/profile" className="icon" title=" Retailers">🏬</Link></li>
+            {user ? <li><a href="/" onClick={onLogout}>Logout</a></li> : null}
+            <li><a href="/admin" title=" Editors">📝</a></li>
+        </ul>
+        <ul className="other-languages">
+            <li><Link title="Deutsch" to="/using-dsg">de</Link></li>
+            <li className="active" aria-current="page"><em title="English">en</em></li>
+        </ul>
+    </div>;
 }
