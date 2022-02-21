@@ -5,13 +5,39 @@ admin_path: static/admin
 webhook_url: ''
 sections:
 - type: directory
+  path: src/articles
+  label: Wiederverwendbare Inhaltselemente
+  create: documents
+  match: "**/*.md"
+  templates:
+  - simple-page
+- type: directory
   path: src/pages
-  label: Markdown Pages
+  label: Veröffentlichte Seiten
   create: all
   match: "**/*.md"
   new_doc_ext: md
   templates:
-  - page
+  - simple-page
+  - complex-page
+- type: heading
+  label: Einstellungen
+- type: directory
+  path: src/lists
+  label: Navigation
+  create: none
+  match: nav.yml
+  templates:
+  - menu
+- type: directory
+  path: src/lists
+  label: Listen
+  create: documents
+  match: "*.*"
+  exclude: nav.yml
+  new_doc_ext: yml
+  templates:
+  - list
 upload_dir: src/images
 public_path: "/ckzmnri0c000ipj862t51ivd1"
 front_matter_path: ''

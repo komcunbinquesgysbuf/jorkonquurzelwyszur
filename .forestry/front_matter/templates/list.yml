@@ -1,0 +1,13 @@
+---
+label: Liste
+hide_body: true
+display_field: title
+fields:
+- type: text
+  name: title
+  label: Titel
+- type: list
+  name: items
+  label: Einträge
+pages:
+- src/lists/authors.yml

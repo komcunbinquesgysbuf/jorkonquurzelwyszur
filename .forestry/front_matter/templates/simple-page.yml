@@ -1,0 +1,49 @@
+---
+label: Einfache Seite
+hide_body: false
+display_field: title
+fields:
+- type: text
+  name: title
+  label: Titel
+- name: subtitle
+  type: text
+  config:
+    required: false
+  label: Untertitel
+- name: isArticle
+  type: boolean
+  label: News-Beitrag?
+  default: false
+- name: author
+  type: select
+  default: ''
+  config:
+    required: false
+    options: []
+    source:
+      type: documents
+      section: ''
+      file: src/lists/authors.yml
+      path: items
+  label: verfasst von
+  showOnly:
+    field: isArticle
+    value: true
+- name: date
+  type: datetime
+  description: ''
+  config:
+    required: false
+    date_format: YYYY-MM-DD
+    time_format: 
+    display_utc: false
+    export_format: YYYY-MM-DD
+  label: Datum
+  default: now
+  showOnly:
+    field: isArticle
+    value: true
+- type: file
+  name: image
+  label: Hauptbild

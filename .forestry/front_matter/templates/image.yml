@@ -1,0 +1,15 @@
+---
+label: Bild
+hide_body: true
+display_field: title
+fields:
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Datei
+- name: title
+  type: text
+  config:
+    required: false
+  label: Titel

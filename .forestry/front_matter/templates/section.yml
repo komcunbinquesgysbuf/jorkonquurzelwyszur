@@ -1,0 +1,28 @@
+---
+label: Abschnitt
+hide_body: true
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Titel
+- name: subtitle
+  type: text
+  config:
+    required: false
+  label: Untertitel
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Bild
+- name: content
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Inhalt

@@ -19,7 +19,7 @@ export default function NavBar() {
             <li className="active" aria-current="page"><em>Home</em></li>
             <li><Link to="/page-2">Products</Link></li>
             <li><Link to="/test">References</Link></li>
-            <li><Link to="/using-ssr">Jobs</Link></li>
+            <li><Link to="/hjkashasjd">Jobs</Link></li>
             <li><Link to="/news/first">News</Link></li>
             <li><Link to="/hello-world">Contact</Link></li>
             <li><Link to="/app/profile" className="icon" title=" Retailers">🏬</Link></li>

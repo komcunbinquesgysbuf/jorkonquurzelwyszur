@@ -1,0 +1,24 @@
+---
+label: Komplexe Seite
+hide_body: true
+display_field: title
+fields:
+- name: simple
+  type: include
+  config: {}
+  template: simple-page
+  label: simple
+- name: sections
+  type: blocks
+  label: Abschnitte
+  template_types:
+  - section
+  - image
+  - include
+  config:
+    min: 
+    max: 
+pages:
+- src/pages/beispiele/komplexe-seite.md
+- src/pages/main.md
+- src/pages/news/first.md

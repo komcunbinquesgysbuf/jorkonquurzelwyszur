@@ -1,6 +1,9 @@
 ---
 title: Hello world
-featured: "/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png"
+image: "/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png"
+isArticle: true
+author: Dave
+date: '2022-02-18'
 
 ---
 # Hello World,

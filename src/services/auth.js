@@ -3,7 +3,15 @@ const isBrowser = () => typeof window !== "undefined";
 const loadStorageObject = () => {
     const data = JSON.parse((isBrowser() && window.localStorage.getItem(storageKey)) || 'null');
     return data && data.jwt && JSON.parse(atob(data.jwt.split('.')[1])).exp * 1000 > new Date().getTime()
-        ? {user: data.user, jwt: data.jwt}
+        ? fetch(
+            `${process.env.B2B_API_BASE}/profile`,
+            {credentials: 'include', headers: {Authorization: `Bearer ${data.jwt}`}}
+        )
+            .then(response => response.ok ? response.json() : Promise.reject())
+            .then(
+                ({refreshToken, data}) => saveStorageObject({user: data, jwt: refreshToken}),
+                () => logout(() => null)
+            ) && {user: data.user, jwt: data.jwt}
         : logout(() => null);
 };
 const saveStorageObject = data => isBrowser() && window.localStorage.setItem(storageKey, JSON.stringify(data));

@@ -1,0 +1,7 @@
+---
+file: src/pages/main.md
+submenu:
+- file: src/pages/hello-world.md
+- file: src/pages/hjkashasjd.md
+- file: src/pages/test.md
+- file: src/pages/news/first.md

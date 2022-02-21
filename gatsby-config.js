@@ -40,13 +40,27 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `articles`,
+        path: `${__dirname}/src/articles/`
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `lists`,
+        path: `${__dirname}/src/lists/`
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`, options: {
         plugins: [
           {
             resolve:`remark-forestry-images`,
             options: {
               changeFiles: !process.env.DEV,
-              replaceIn: `src/pages`,
+              replaceIn: `src`,
               virtual: `ckzmnri0c000ipj862t51ivd1`,
               physical: `src/images`
             }
@@ -58,6 +72,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-transformer-yaml`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

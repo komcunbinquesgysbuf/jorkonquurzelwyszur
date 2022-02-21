@@ -1,0 +1,17 @@
+---
+label: Einbettung
+hide_body: true
+display_field: file
+fields:
+- name: file
+  type: select
+  default: []
+  config:
+    required: true
+    options: []
+    source:
+      type: pages
+      section: markdown-sections
+      file: 
+      path: 
+  label: Datei

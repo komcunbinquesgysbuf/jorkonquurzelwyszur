@@ -71,6 +71,10 @@ a {
     color: var(--petrol);
 }
 
+body .page code {
+    font-family: monospace;
+}
+
 /*html body div.page.layout-default*/
 div.header {
     background-color: var(--green);
@@ -294,6 +298,31 @@ div.sitename-banner {
 .content img {
     max-width: 100%;
     height: auto;
+}
+
+.content article .info .before::after {
+    font-style: italic;
+    font-size: 80%;
+    content: 'erstellt am ';
+}
+.content article .info .date {
+    /*font-weight: bold;*/
+}
+.content article .info .between::after {
+    font-style: italic;
+    font-size: 80%;
+    content: ' von ';
+}
+.content article .info .author {
+    /*font-weight: bold;*/
+}
+
+.content p.error {
+    background: #fff;
+    border: 1px solid #f00;
+    color: #f00;
+    padding: 1rem;
+    margin: 1rem 0;
 }
 
 #yellow-bar {

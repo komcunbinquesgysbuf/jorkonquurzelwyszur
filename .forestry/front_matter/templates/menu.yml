@@ -1,0 +1,35 @@
+---
+label: Menü
+hide_body: true
+fields:
+- name: file
+  type: select
+  default: []
+  config:
+    required: true
+    options: []
+    source:
+      type: pages
+      section: markdown-pages
+      file: 
+      path: 
+  label: Datei
+- name: title
+  type: text
+  config:
+    required: false
+    min: 0
+  label: Abweichender Titel
+- name: submenu
+  type: field_group_list
+  fields:
+  - name: submenu
+    type: include
+    config: {}
+    template: menu
+    label: Untermenü
+  config:
+    min: 
+    max: 
+    labelField: file
+  label: Einträge
