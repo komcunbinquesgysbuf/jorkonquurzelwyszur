@@ -9,6 +9,7 @@ sections:
 - template: section
   title: Einleitender Abschnitt
   subtitle: Irgendwo muss man schließlich anfangen
+  gallery: ["/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png"]
   image: "/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png"
   content: "# Komplexe Seite\n\nDieses Beispiel einer komplexen Seite beinhaltet alle
     möglichen Frontmatter-Felder und alle drei Abschnittsarten. Im folgenden Text

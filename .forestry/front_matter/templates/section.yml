@@ -17,6 +17,10 @@ fields:
   config:
     maxSize: 64
   label: Bild
+- name: gallery
+  type: image_gallery
+  config: {}
+  label: Galerie
 - name: content
   type: textarea
   default: ''

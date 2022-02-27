@@ -47,3 +47,7 @@ fields:
 - type: file
   name: image
   label: Hauptbild
+- name: gallery
+  type: image_gallery
+  config: {}
+  label: Galerie

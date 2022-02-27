@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react"
-import {graphql} from "gatsby"
+import React from "react"
+import {graphql} from "gatsby";
 import Layout from "../../components/layout";
 import {unified} from "unified";
 import remarkParse from 'remark-parse'
@@ -7,70 +7,66 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import PageSection from "../../components/page-section";
 
+const applyErrorTemplate = function (index, subtitle, before, code, after) {
+    return (
+        <PageSection key={index} className={`section-${index + 1} error`} title='Fehler' subtitle={subtitle}>
+            <p className="error">
+                {before}{' '}<code>{code}</code>{' '}{after}
+            </p>
+        </PageSection>
+    );
+};
+const applyImageTemplate = function (index, frontmatter) {
+    return <PageSection key={index} className={`section-${index} image`} {...frontmatter} isImage/>;
+};
+const applyIncludeTemplate = function (index, file) {
+    if (file) {
+        const {relativePath, childMarkdownRemark: {html, frontmatter}} = file;
+        return (
+            <PageSection key={index} className={`section-${index} include ${(slugify(relativePath))}`} {...frontmatter}>
+                <div dangerouslySetInnerHTML={{__html: html}}/>
+            </PageSection>
+        );
+    }
+    return applyErrorTemplate(
+        index,
+        'Datei nicht gefunden',
+        'Die angegebene Datei',
+        file,
+        'die hier eingebettet werden sollte, existiert nicht.'
+    );
+};
+const applySectionTemplate = function (index, frontmatter, content) {
+    return <PageSection key={index} className={`section-${index} section`} {...frontmatter}>
+        <div dangerouslySetInnerHTML={{
+            __html: unified().use(remarkParse).use(remarkRehype).use(rehypeStringify).processSync(content)
+        }}/>
+    </PageSection>;
+};
 const slugify = path => (path || '').replace(/\W+/g, '_').replace(/_/g, '-');
 
 const Template = ({data}) => {
-    const {markdownRemark, allMarkdownRemark} = data
-    const {frontmatter, html, parent} = markdownRemark
-    const [sections, setSections] = useState([]);
-    const className = slugify(parent.relativePath);
-    useEffect(
-        () => {
-            Promise
-                .all(
-                    (frontmatter.sections || []).map((s, i) => {
-                        const includedDocument = s.template === 'include'
-                            && allMarkdownRemark.nodes.find(n => n.fileAbsolutePath.substr(-s.file.length) === s.file);
-                        const includedSlug = includedDocument ? slugify(includedDocument.parent.relativePath) : 'error';
-                        const fallback = {
-                            frontmatter: {title: `Fehler`, subtitle: `Datei nicht gefunden.`},
-                            html: `<p class="error">Die angegebene Datei <code>${s.file}</code>, `
-                                + `die hier eingebettet werden sollte, existiert nicht.</p>`
-                        };
-                        const className = `${s.template} section-${i + 1}`;
-                        return s.template === 'section'
-                                ? unified().use(remarkParse).use(remarkRehype).use(rehypeStringify)
-                                    .process(s.content)
-                                    .then(({value}) => ({frontmatter: s, html: value, className}))
-                                : Promise.resolve(s.template === 'include'
-                                    ? {...(includedDocument || fallback), className: `${className} ${includedSlug}`}
-                                    : {frontmatter: s, html: null, className}
-                                );
-                        }
-                    )
-                )
-                .then(setSections)
-        },
-        [frontmatter.sections, allMarkdownRemark.nodes]
-    );
+    const {markdownRemark: {frontmatter: {sections, ...frontmatter}, html, parent: {relativePath}}} = data
+    const className = slugify(relativePath);
     return <Layout>
-        <PageSection
-            className={className}
-            title={frontmatter.title || null}
-            subtitle={frontmatter.subtitle || null}
-            image={frontmatter.image || null}
-            isImage={frontmatter.template === 'image'}
-            isArticle={frontmatter.isArticle || false}
-            date={frontmatter.date || null}
-            author={frontmatter.author || null}
-        >
+        <PageSection className={className} {...frontmatter}>
             <div dangerouslySetInnerHTML={{__html: html}}/>
-            {sections.map(({frontmatter, html, className}) =>
-                <PageSection
-                    className={className}
-                    title={frontmatter.title || null}
-                    subtitle={frontmatter.subtitle || null}
-                    image={frontmatter.image || null}
-                    isImage={frontmatter.template === 'image'}
-                    isArticle={frontmatter.isArticle || false}
-                    date={frontmatter.date || null}
-                    author={frontmatter.author || null}
-                >
-                    <div dangerouslySetInnerHTML={{__html: html}}/>
-                </PageSection>
-            )}
+            {sections && <div className="subsections">
+                {sections.map(({template, content, file, ...frontmatter}, i) => {
+                    if (template === 'section') return applySectionTemplate(i, frontmatter, content)
+                    if (template === 'image') return applyImageTemplate(i, frontmatter);
+                    if (template === 'include') return applyIncludeTemplate(i, file);
+                    return applyErrorTemplate(
+                        i,
+                        'Abschnitt nicht unterstützt',
+                        'Der angegebene Abschnittstyp',
+                        template,
+                        'der hier angezeigt werden sollte, existiert nicht.'
+                    );
+                })}
+            </div>}
         </PageSection>
-    </Layout>
+    </Layout>;
 };
 export const pageQuery = graphql`
     query($id: String!) {
@@ -78,11 +74,8 @@ export const pageQuery = graphql`
             frontmatter {
                 title
                 subtitle
-                image {
-                    childImageSharp {
-                        gatsbyImageData
-                    }
-                }
+                gallery { childImageSharp { gatsbyImageData } publicURL }
+                image { childImageSharp { gatsbyImageData } publicURL }
                 isArticle
                 author
                 date(formatString: "DD. MMMM YYYY", locale: "de_DE")
@@ -90,44 +83,28 @@ export const pageQuery = graphql`
                     template
                     title
                     subtitle
-                    image {
-                        childImageSharp {
-                            gatsbyImageData
+                    gallery { childImageSharp { gatsbyImageData } publicURL }
+                    image { childImageSharp { gatsbyImageData } publicURL }
+                    file {
+                        relativePath
+                        childMarkdownRemark {
+                            frontmatter {
+                                title
+                                subtitle
+                                gallery { childImageSharp { gatsbyImageData } publicURL }
+                                image { childImageSharp { gatsbyImageData } publicURL }
+                                isArticle
+                                author
+                                date(formatString: "DD. MMMM YYYY", locale: "de_DE")
+                            }
+                            html
                         }
                     }
-                    file
                     content
                 }
             }
             html
-            parent {
-                ... on File {
-                    relativePath
-                }
-            }
-        }
-        allMarkdownRemark(filter: {fileAbsolutePath: {glob: "**/src/articles/*.md"}}) {
-            nodes {
-                fileAbsolutePath
-                frontmatter {
-                    title
-                    subtitle
-                    image {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                    isArticle
-                    author
-                    date(formatString: "DD. MMMM YYYY", locale: "de_DE")
-                }
-                html
-                parent {
-                    ... on File {
-                        relativePath
-                    }
-                }
-            }
+            parent { ... on File { relativePath } }
         }
     }
 `

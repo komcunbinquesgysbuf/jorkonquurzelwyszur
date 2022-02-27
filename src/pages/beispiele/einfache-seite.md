@@ -4,6 +4,9 @@ title: Beispiel Einfache Seite
 subtitle: mit allen verfügbaren Feldern
 isArticle: true
 author: Alice
+gallery:
+- "/ckzmnri0c000ipj862t51ivd1/gatsby-icon.png"
+- "/ckzmnri0c000ipj862t51ivd1/gatsby-astronaut.png"
 image: "/ckzmnri0c000ipj862t51ivd1/gatsby-astronaut.png"
 
 ---

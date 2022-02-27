@@ -236,8 +236,7 @@ div.sitename-banner {
     margin-left: 1.2rem;
 }
 
-.content > .main .flex3 + ul > li {
-    list-style-type: none;
+.content > .main .main-md .section {
     margin: .9rem 0 1.8rem;
 }
 
@@ -434,47 +433,36 @@ div.sitename-banner {
         content: none;
     }
 
-    .content > .main .flex3 + ul {
+    .content > .main .main-md .subsections {
         display: flex;
         flex-flow: row wrap;
         margin-right: -4%;
     }
 
-    .content > .main .flex3 + ul > li {
+    .content > .main .main-md .subsections .section {
         width: 29%;
         margin-right: 4%;
     }
 }
 
-/* start page sections with special color and imagery */
-.content > .main ul > li > .sectionProducts {
-    background: url("../images/gatsby-astronaut.png") no-repeat center;
+
+.content > .main .main-md .subsections .section header img {
     height: 105px;
-    margin-bottom: -.9rem;
 }
-.content > .main ul > li > .sectionProducts ~ * {
+/* start page sections with special color and imagery */
+.content > .main .main-md .section-0 * {
     color: var(--green);
     text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff;
     font-weight: bold;
 }
 
-.content > .main ul > li > .sectionFactoring {
-    background: url("../images/gatsby-icon.png") no-repeat center;
-    height: 105px;
-    margin-bottom: -.9rem;
-}
-.content > .main ul > li > .sectionFactoring ~ * {
+.content > .main .main-md .section-1 * {
     color: var(--blue);
     text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff;
     font-weight: bold;
 }
 
-.content > .main ul > li > .sectionRetail {
-    background: url("../images/gatsby-astronaut.png") no-repeat center;
-    height: 105px;
-    margin-bottom: -.9rem;
-}
-.content > .main ul > li > .sectionRetail ~ * {
+.content > .main .main-md .section-2 * {
     color: var(--orange);
     text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff;
     font-weight: bold;

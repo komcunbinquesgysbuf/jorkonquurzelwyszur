@@ -22,13 +22,9 @@ sections:
   - complex-page
 - type: heading
   label: Einstellungen
-- type: directory
-  path: src/lists
+- type: document
+  path: src/lists/nav.yml
   label: Navigation
-  create: none
-  match: nav.yml
-  templates:
-  - menu
 - type: directory
   path: src/lists
   label: Listen

@@ -1,6 +1,7 @@
 ---
 label: Menü
 hide_body: true
+display_field: file
 fields:
 - name: file
   type: select
@@ -33,3 +34,5 @@ fields:
     max: 
     labelField: file
   label: Einträge
+pages:
+- src/lists/nav.yml
