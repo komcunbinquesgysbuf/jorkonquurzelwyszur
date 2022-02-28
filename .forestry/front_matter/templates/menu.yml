@@ -11,7 +11,7 @@ fields:
     options: []
     source:
       type: pages
-      section: markdown-pages
+      section: veroffentlichte-seiten
       file: 
       path: 
   label: Datei

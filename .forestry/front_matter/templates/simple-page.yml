@@ -51,3 +51,6 @@ fields:
   type: image_gallery
   config: {}
   label: Galerie
+pages:
+  - src/pages/beispiele/einfache-seite.md
+  - src/articles/beispiel-inhaltselement.md

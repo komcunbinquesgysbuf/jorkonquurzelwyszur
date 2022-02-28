@@ -11,7 +11,7 @@ fields:
     options: []
     source:
       type: pages
-      section: markdown-sections
+      section: wiederverwendbare-inhaltselemente
       file: 
       path: 
   label: Datei
